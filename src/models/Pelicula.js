@@ -15,7 +15,7 @@ module.exports=(sequilize)=>{
             type:DataTypes.STRING
         },
         calification:{
-            type:DataTypes.NUMBER,
+            type:DataTypes.INTEGER,
             validate:{
                 max:5,
                 min:0

@@ -1,7 +1,7 @@
 const {DataTypes} = require("sequelize");
 
 module.exports=(sequilize)=>{
-    sequilize.define("personaje",{
+    sequilize.define("user",{
         id:{
             type:DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -11,15 +11,14 @@ module.exports=(sequilize)=>{
             type:DataTypes.STRING,
             require:true
         },
-        personaje_image:{
+        email:{
             type:DataTypes.STRING
         },
-        age:{
-            type:DataTypes.INTEGER,
-
+        password:{
+            type:DataTypes.STRING
         },
-        weight:{
-            type:DataTypes.INTEGER
+        token:{
+            type:DataTypes.STRING
         }
     },{
         timestamps:true

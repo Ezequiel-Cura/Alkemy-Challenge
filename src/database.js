@@ -44,17 +44,19 @@ fs.readdirSync(path.join(__dirname, '/models'))
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
 });
 
-console.log(modelDefiners)
+
 modelDefiners.forEach(model => model(sequelize));
 
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Genero,Pelicula,Personaje} = sequelize.models;
+
+
+const { Genero,Pelicula,Personaje,User} = sequelize.models;
 
 Personaje.belongsToMany(Pelicula,{through:"personaje_peliculas"});
-Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"})
+Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
