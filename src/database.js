@@ -59,6 +59,6 @@ Personaje.belongsToMany(Pelicula,{through:"personaje_peliculas"});
 Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"});
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  ...sequelize.models, // para poder importar los modelos así: const { User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };

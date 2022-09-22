@@ -9,7 +9,8 @@ module.exports=(sequilize)=>{
         },
         name:{
             type:DataTypes.STRING,
-            require:true
+            require:true,
+            unique:true
         },
         personaje_image:{
             type:DataTypes.STRING
