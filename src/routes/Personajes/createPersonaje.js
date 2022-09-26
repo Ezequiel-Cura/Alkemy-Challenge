@@ -11,10 +11,20 @@ router.post("/", auth, async(req, res) => {
         if(!(name && image && age && weight)) res.status(400).send("All inputs required")
 
         const oldPersonaje  = await Personaje.findOne({where:{name:name}})
-        if(oldPersonaje) res.status(400).send("Personaje already exist")
+        if(oldPersonaje) return res.status(400).send("Personaje already exist")
 
-        const createdMovies = await Pelicula.bulkCreate(movies)
-        console.log(createdMovies)
+        const arrayMovies = movies.map(m=> m.title)
+
+        const moviesFound = await Pelicula.findAll({
+            where:{title: arrayMovies}
+        })
+
+        const filteredMovies = movies.filter(({ title: id1 }) => !moviesFound.some(({ title: id2 }) => id2 === id1));
+        const createdMovies = await Pelicula.bulkCreate(filteredMovies)
+
+        const peliculasDB = await Pelicula.findAll({
+            where: {title: arrayMovies}
+        })
 
         const personaje = await Personaje.create({
             name,
@@ -25,8 +35,10 @@ router.post("/", auth, async(req, res) => {
         },{
             include: Pelicula
         })
+        
+        personaje.addPeliculas(peliculasDB)
+
         console.log(personaje)
-        // await personaje.addMovies(createdMovies)
 
         res.status(200).send({msg:"Personaje created succefully",personaje})
     } catch (error) {

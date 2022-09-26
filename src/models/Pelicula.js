@@ -9,7 +9,8 @@ module.exports=(sequilize)=>{
         },
         title:{
             type:DataTypes.STRING,
-            require:true
+            require:true,
+            unique:true
         },
         pelicula_genre:{
             type:DataTypes.STRING

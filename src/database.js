@@ -56,7 +56,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Genero,Pelicula,Personaje,User} = sequelize.models;
 
 Personaje.belongsToMany(Pelicula,{through:"personaje_peliculas"});
-Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"});
+Genero.belongsToMany(Pelicula,{through:"Pelicula_generos"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { User } = require('./db.js');

@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
       { user_id: user.id, email },
       process.env.SECRET,
       {
-        expiresIn: "2h",
+        expiresIn: "24h",
       }
     );
     
