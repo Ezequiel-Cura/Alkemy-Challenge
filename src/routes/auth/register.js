@@ -1,32 +1,26 @@
 const Router = require("express");
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+// const jwt = require("jsonwebtoken")
 //models
 const {User} = require("../../database.js");
-
+// console.log(User)
 
 const router = Router()
 
 
-router.post("/", async (req, res) => {
-
-    
+router.post("/", async (req, res) => {    
   try {
-     
     const { name, email, password } = req.body;
-    console.log(email)
     
     if (!(email && password && name)) {
       res.status(400).send("All input is required");
     }
 
-    console.log(req.body)
     const oldUser = await User.findOne({ where:{email: email} });
-    console.log("OLDUSER",oldUser)
+   
     if (oldUser) {
-      return res.status(409).send("User Already Exist. Please Login");
+      return res.status(400).send("User Already Exist. Please Login");
     }
-
     
     encryptedPassword = await bcrypt.hash(password, 10);
 
@@ -36,22 +30,12 @@ router.post("/", async (req, res) => {
       password: encryptedPassword,
     });
 
-    const token = jwt.sign(
-      { user_id: user.id, email },
-      process.env.SECRET,
-      {
-        expiresIn: "24h",
-      }
-    );
-    
-    user.token = token;
-    await user.save()
 
-    res.status(201).json({msg:"Save the Token for later",user:user});
+    res.status(201).json({msg:"You have been registered, please now login",user:user});
   } catch (err) {
     console.log(err);
+    res.status(400).send(err)
   }
-    
 });
 
 

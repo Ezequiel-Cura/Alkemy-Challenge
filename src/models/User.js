@@ -12,7 +12,9 @@ module.exports=(sequilize)=>{
             require:true
         },
         email:{
-            type:DataTypes.STRING
+            type:DataTypes.STRING,
+            require:true,
+            unique:true
         },
         password:{
             type:DataTypes.STRING

@@ -5,7 +5,8 @@ const login = require("./auth/login")
 
 const getCharacters = require("./getPersonajes")
 
-const createCharacter = require("./Personajes/createPersonaje")
+const crudCharacter = require("./crudPersonajes")
+
 const router = Router()
 
 router.use("/auth/register",register)
@@ -13,7 +14,8 @@ router.use("/auth/login",login)
 
 router.use("/characters",getCharacters)
 
-router.use("/character",createCharacter)
+
+router.use("/character",crudCharacter)
 
 
-module.exports =router;
+module.exports = router;
