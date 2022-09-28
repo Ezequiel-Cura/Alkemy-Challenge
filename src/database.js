@@ -59,6 +59,8 @@ Personaje.belongsToMany(Pelicula,{through:"personaje_peliculas"});
 Pelicula.belongsToMany(Personaje,{through:"personaje_peliculas"});
 
 Genero.belongsToMany(Pelicula,{through:"Pelicula_generos"});
+Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"});
+
 
 // Personaje.hasMany(Pelicula);
 // Genero.hasMany(Pelicula);

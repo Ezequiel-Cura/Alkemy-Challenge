@@ -15,7 +15,7 @@ router.get("/", auth, async(req, res) => {
                 },
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification","image"],
+                    attributes: ["id","title","genre","calification","image"],
                     through:{
                         attributes:[]
                     }
@@ -31,7 +31,7 @@ router.get("/", auth, async(req, res) => {
                 },
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification","image"],
+                    attributes: ["id","title","genre","calification","image"],
                     through:{
                         attributes:[]
                     }
@@ -44,7 +44,7 @@ router.get("/", auth, async(req, res) => {
             const character = await Personaje.findAll({
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification","image"],
+                    attributes: ["id","title","genre","calification","image"],
                     through:{
                         attributes:[]
                     },
@@ -58,7 +58,7 @@ router.get("/", auth, async(req, res) => {
 
         }
 
-        const allCharacters = await Personaje.findAll({attributes:["id","name","personaje_image"]})
+        const allCharacters = await Personaje.findAll({attributes:["id","name","image"]})
 
         res.status(200).send({"number of characters": allCharacters.length, characters: allCharacters})
     } catch (error) {

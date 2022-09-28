@@ -11,7 +11,7 @@ module.exports=(sequilize)=>{
             type:DataTypes.STRING,
             require:true
         },
-        genero_image:{
+        image:{
             type:DataTypes.STRING
         }
     })

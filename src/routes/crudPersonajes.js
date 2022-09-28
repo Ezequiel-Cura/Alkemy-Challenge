@@ -15,7 +15,7 @@ router.get("/:id", auth, async(req, res) => {
             },
             include : {
                 model: Pelicula,
-                attributes: ["id","title","pelicula_genre","calification"],
+                attributes: ["id","title","genre","calification"],
                 through:{
                     attributes:[]
                 }
@@ -64,7 +64,7 @@ router.post("/", auth, async(req, res) => {
         
         personaje.addPeliculas(peliculasDB)
         
-        console.log(personaje)
+        
         
         res.status(200).send({msg:"Personaje created succefully",personaje})
     } catch (error) {

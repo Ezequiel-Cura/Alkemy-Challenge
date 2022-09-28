@@ -11,10 +11,7 @@ module.exports=(sequilize)=>{
             type:DataTypes.STRING,
             require:true,
             unique:true
-        },
-        pelicula_genre:{
-            type:DataTypes.STRING
-        },
+        }, 
         image: {
             type: DataTypes.STRING
         },
