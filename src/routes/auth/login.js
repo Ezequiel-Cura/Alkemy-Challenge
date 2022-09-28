@@ -1,6 +1,7 @@
-const auth = require("../../middleware/auth");
+// const auth = require("../../middleware/auth");
 const {Router} = require("express")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
 const router = Router()
 
@@ -23,13 +24,14 @@ router.post("/", async(req, res) => {
       }
     })
 
-    if(!userFound) res.status(400).send("User not found, register please")
+    if(!userFound) res.status(400).send("User not found, register first")
 
+    const passwordCompare = await bcrypt.compare(password,userFound.password)
+    if(passwordCompare === false)res.status(400).send("incorrect password")
 
-    
 
     const token = jwt.sign(
-      { user_id: user.id, email },
+      { user_id: userFound.id, email },
       process.env.SECRET,
       {
         expiresIn: "24h",
@@ -38,15 +40,16 @@ router.post("/", async(req, res) => {
   
 
 
-
-
-    res.status(200).send("Welcome 🙌 ");
+    res.status(200).send({
+      msg: "Welcome 🙌 here is you token, put it on the header x-access-token. You have 24h before it expires",
+      token: token
+    });
     
   } catch (error) {
-    
+    console.log(error)
   }
 
-
+//"Welcome 🙌 "
 
 });
 

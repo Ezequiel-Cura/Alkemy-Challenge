@@ -21,6 +21,9 @@ module.exports=(sequilize)=>{
                 max:5,
                 min:0
             }
+        },
+        pelicula_image: {
+            type: DataTypes.STRING
         }
     },{
         timestamps:true

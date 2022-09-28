@@ -4,6 +4,31 @@ const {Personaje,Pelicula} = require("../database.js")
 const router = Router()
 
 
+router.get("/:id", auth, async(req, res) => {
+    try {
+        
+        const {id} = req.params
+
+        const character = await Personaje.findOne({
+            where: {
+                id : id
+            },
+            include : {
+                model: Pelicula,
+                attributes: ["id","title","pelicula_genre","calification"],
+                through:{
+                    attributes:[]
+                }
+            }
+        })
+
+        res.status(200).send(character)
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
 
 router.post("/", auth, async(req, res) => {
     try {
