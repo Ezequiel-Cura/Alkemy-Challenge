@@ -15,15 +15,15 @@ module.exports=(sequilize)=>{
         pelicula_genre:{
             type:DataTypes.STRING
         },
+        image: {
+            type: DataTypes.STRING
+        },
         calification:{
             type:DataTypes.INTEGER,
             validate:{
                 max:5,
                 min:0
             }
-        },
-        pelicula_image: {
-            type: DataTypes.STRING
         }
     },{
         timestamps:true

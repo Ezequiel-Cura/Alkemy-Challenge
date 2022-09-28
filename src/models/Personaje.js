@@ -12,7 +12,7 @@ module.exports=(sequilize)=>{
             require:true,
             unique:true
         },
-        personaje_image:{
+        image:{
             type:DataTypes.STRING
         },
         age:{

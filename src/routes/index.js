@@ -7,6 +7,7 @@ const getCharacters = require("./getPersonajes")
 const getMovies = require("./getPeliculas")
 
 const crudCharacter = require("./crudPersonajes")
+const crudPelicula = require("./crudPeliculas")
 
 const router = Router()
 
@@ -17,6 +18,8 @@ router.use("/characters",getCharacters)
 router.use("/movies",getMovies)
 
 router.use("/character",crudCharacter)
+
+router.use("/movie",crudPelicula)
 
 
 module.exports = router;

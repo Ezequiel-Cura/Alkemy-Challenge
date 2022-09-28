@@ -54,7 +54,7 @@ router.post("/", auth, async(req, res) => {
         
         const personaje = await Personaje.create({
             name,
-            personaje_image: image,
+            image,
             age,
             weight,
             pelicula:movies

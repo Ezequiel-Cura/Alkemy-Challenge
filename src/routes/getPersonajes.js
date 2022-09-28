@@ -15,7 +15,7 @@ router.get("/", auth, async(req, res) => {
                 },
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification"],
+                    attributes: ["id","title","pelicula_genre","calification","image"],
                     through:{
                         attributes:[]
                     }
@@ -31,7 +31,7 @@ router.get("/", auth, async(req, res) => {
                 },
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification"],
+                    attributes: ["id","title","pelicula_genre","calification","image"],
                     through:{
                         attributes:[]
                     }
@@ -44,7 +44,7 @@ router.get("/", auth, async(req, res) => {
             const character = await Personaje.findAll({
                 include : {
                     model: Pelicula,
-                    attributes: ["id","title","pelicula_genre","calification"],
+                    attributes: ["id","title","pelicula_genre","calification","image"],
                     through:{
                         attributes:[]
                     },

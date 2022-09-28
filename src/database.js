@@ -56,6 +56,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Genero,Pelicula,Personaje,User} = sequelize.models;
 
 Personaje.belongsToMany(Pelicula,{through:"personaje_peliculas"});
+Pelicula.belongsToMany(Personaje,{through:"personaje_peliculas"});
+
 Genero.belongsToMany(Pelicula,{through:"Pelicula_generos"});
 
 // Personaje.hasMany(Pelicula);
