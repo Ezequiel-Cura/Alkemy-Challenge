@@ -25,7 +25,7 @@ const sendGridMail = ()=>{
 
 }
 
-const sendEmail = async ({email})=>{
+const sendEmail = async (email)=>{
     try {
         
         let transporter = nodemailer.createTransport({
@@ -42,8 +42,8 @@ const sendEmail = async ({email})=>{
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to:email,
-            subject:"testing this thing",
-            text:"Welcome back",
+            subject:"Welcome to the API ALKEMY",
+            text:"Welcome!!",
 
         })
 
