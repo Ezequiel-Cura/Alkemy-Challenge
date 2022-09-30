@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt")
 const router = Router()
 
 const {User} = require("../../database.js");
+const {sendEmail,sendGridMail} = require("../../Utils/sendEmail.js");
 
 
 
@@ -38,13 +39,14 @@ router.post("/", async(req, res) => {
       }
     );
   
-
+    await sendEmail(email)
 
     res.status(200).send({
       msg: "Welcome 🙌 here is you token, put it on the header x-access-token. You have 24h before it expires",
       token: token
     });
     
+
   } catch (error) {
     console.log(error)
   }

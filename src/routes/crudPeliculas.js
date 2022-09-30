@@ -6,26 +6,37 @@ const router = Router()
 
 router.get("/:id",auth,async(req,res)=>{
     try {
-
-
-
-
-        
         const {id} = req.params
         const pelicula = await Pelicula.findOne({
             where:{
                 id : id,
             },
             include:{
-                model: Genero,
+                model: Personaje,
                 through:{
                     attributes:[]
                 }
             }
         })
+        const pelicula_generos = await Pelicula.findOne({
+            where:{
+                id:id,
+            },
+            include:{
+                model: Genero,
+                attributes:["name","image"],
+                through:{
+                    attributes:[]
+                }
+            }
+        })
+        // console.log(pelicula_generos.generos)
         if(!pelicula) return res.status(404).send("Pelicula not found")
         
-        res.status(200).send(pelicula)
+        pelicula_generos.dataValues.personajes = pelicula.dataValues.personajes
+
+        console.log(pelicula.dataValues)
+        res.status(200).send(pelicula_generos)
     } catch (error) {
         console.log(error)
         res.status(404).send(error)
@@ -76,7 +87,7 @@ router.post("/",auth,async(req,res)=>{
     }
 })
 
-router.put("/",auth,async(req,res)=>{
+router.put("/:id",auth,async(req,res)=>{
     try {
         const {id} = req.params
         if(!id) res.send("Pelicula id required")
@@ -92,11 +103,13 @@ router.put("/",auth,async(req,res)=>{
                 id: id
             }
         })
-
+        // INTENTA HACERLO CON VARIAS PROPIEDADES HACIENDO UN LOOP SOBRE ESTO
+        // ESTO DE ACA ABAJO
         FoundPelicula[key] = value
         await FoundPelicula.save()
         res.status(200).send("Updated succefully")
     } catch (err) {
+        console.log(err)
         res.status(400).send({msg: "Remember one property per requeste can be updated", error: err})
     }
 
@@ -117,7 +130,7 @@ router.delete("/:id",auth,async(req,res)=>{
             }
         })
 
-        if(!peliFound) return res.status(400).send("Pelicula alredy deleted")
+        if(!peliFound) return res.status(400).send("Pelicula already deleted")
 
         await Pelicula.destroy({
             where:{
