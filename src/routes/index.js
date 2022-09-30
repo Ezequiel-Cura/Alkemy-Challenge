@@ -18,7 +18,6 @@ router.use("/characters",getCharacters)
 router.use("/movies",getMovies)
 
 router.use("/character",crudCharacter)
-
 router.use("/movie",crudPelicula)
 
 

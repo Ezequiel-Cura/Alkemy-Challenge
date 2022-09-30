@@ -77,20 +77,29 @@ router.put("/:id",auth,async(req,res)=>{
     try {
         const {id} = req.params
         if(!id) res.send("Personaje id required")
-        let key;
-        let value;
-        for(const property in req.body){
-            key = property
-            value = req.body[property]
-        }
-        console.log(key+ " " + value)
+        
         const Foundpersonaje = await Personaje.findOne({
             where:{
                 id: id
             }
         })
 
-        Foundpersonaje[key] = value
+        for(const prop in req.body){
+            if(prop === "pelicula"){
+                const peliculasDB = await Pelicula.findAll({
+                    where:{
+                        title: req.body[prop]
+                    }
+                })
+                Foundpersonaje.addPeliculas(peliculasDB)
+
+            }else{
+                Foundpersonaje[key] = value
+            }
+        }
+
+
+
         await Foundpersonaje.save()
         res.status(200).send("Updated succefully")
     } catch (err) {

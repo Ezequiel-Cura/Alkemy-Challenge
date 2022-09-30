@@ -51,7 +51,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// console.log(sequelize.models)
+
 
 const { Genero,Pelicula,Personaje,User} = sequelize.models;
 
@@ -61,9 +61,6 @@ Pelicula.belongsToMany(Personaje,{through:"personaje_peliculas"});
 Genero.belongsToMany(Pelicula,{through:"Pelicula_generos"});
 Pelicula.belongsToMany(Genero,{through:"Pelicula_generos"});
 
-
-// Personaje.hasMany(Pelicula);
-// Genero.hasMany(Pelicula);
 
 
 module.exports = {

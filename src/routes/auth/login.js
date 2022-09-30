@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt")
 const router = Router()
 
 const {User} = require("../../database.js");
-const {sendEmail,sendGridMail} = require("../../Utils/sendEmail.js");
+const {sendEmail} = require("../../Utils/sendEmail.js");
 
 
 
@@ -50,7 +50,6 @@ router.post("/", async(req, res) => {
     console.log(error)
   }
 
-//"Welcome 🙌 "
 
 });
 

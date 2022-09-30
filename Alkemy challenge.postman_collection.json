@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "95eb2b43-db76-474d-9642-2f16fb3e4689",
+		"name": "Alkemy challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20873668"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ezequiel\",\r\n  \"email\": \"ezequiel28cura@gmail.com\",\r\n  \"password\": \"hola\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ezequiel\",\r\n  \"email\": \"ezequiel28cura@gmail.com\",\r\n  \"password\": \"hola\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Personaje",
+			"item": [
+				{
+					"name": "Update Personaje",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTIyN2Y1NTYtMGEzMC00OTU1LTg3NmUtZjlhNDYyMTg4MDc5IiwiZW1haWwiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNjY0MzIyMzM0LCJleHAiOjE2NjQ0MDg3MzR9.T0Rq1Yn6_MhfWCmx4tXx6iObqzk4BIRIxFEuu9cNXQE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/character/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPersonaje",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTIyN2Y1NTYtMGEzMC00OTU1LTg3NmUtZjlhNDYyMTg4MDc5IiwiZW1haWwiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNjY0MzIyMzM0LCJleHAiOjE2NjQ0MDg3MzR9.T0Rq1Yn6_MhfWCmx4tXx6iObqzk4BIRIxFEuu9cNXQE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/character/07d89c0e-525b-4879-950c-2399497f14c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								"07d89c0e-525b-4879-950c-2399497f14c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPersonaje",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTIyN2Y1NTYtMGEzMC00OTU1LTg3NmUtZjlhNDYyMTg4MDc5IiwiZW1haWwiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNjY0MzIyMzM0LCJleHAiOjE2NjQ0MDg3MzR9.T0Rq1Yn6_MhfWCmx4tXx6iObqzk4BIRIxFEuu9cNXQE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"inteto\",\r\n    \"age\":45,\r\n    \"image\": \"alskdfjklasdf.jpg\",\r\n    \"weight\": 50,\r\n    \"movies\": [{\r\n        \"title\":\"se sigue\",\r\n        \"image\":\"hdafkljsdf\",\r\n        \"calification\": 5\r\n    },{\r\n        \"title\":\"asdfcccccc\",\r\n        \"image\":\"hdafkljsdf\",\r\n        \"calification\": 1\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/character",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePersonaje",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODliYzY2ZDUtNTRkZi00YzAwLWI3NTEtYzJlZjcxNjQ1MGE5IiwiZW1haWwiOiJlemVxdWllbDI4Y3VyYUBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NjUwMzYsImV4cCI6MTY2NDY1MTQzNn0.He7GipSPuUvzK_eQ4fOAlvAxvm1YNXlWSz27JPGJts8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/character/808b5432-4564-4caf-81ef-d04319520a74",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								"808b5432-4564-4caf-81ef-d04319520a74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pelicula",
+			"item": [
+				{
+					"name": "getPelicula",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODliYzY2ZDUtNTRkZi00YzAwLWI3NTEtYzJlZjcxNjQ1MGE5IiwiZW1haWwiOiJlemVxdWllbDI4Y3VyYUBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NjUwMzYsImV4cCI6MTY2NDY1MTQzNn0.He7GipSPuUvzK_eQ4fOAlvAxvm1YNXlWSz27JPGJts8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/movie/ee31965d-5d10-4e12-8ec2-24fb9752b227",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movie",
+								"ee31965d-5d10-4e12-8ec2-24fb9752b227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPelicula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODliYzY2ZDUtNTRkZi00YzAwLWI3NTEtYzJlZjcxNjQ1MGE5IiwiZW1haWwiOiJlemVxdWllbDI4Y3VyYUBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NjUwMzYsImV4cCI6MTY2NDY1MTQzNn0.He7GipSPuUvzK_eQ4fOAlvAxvm1YNXlWSz27JPGJts8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"q3rqa\",\r\n    \"calification\": 5,\r\n    \"image\": \"kadsjfkalsñdf.png\",\r\n    \"genres\":[{\r\n        \"name\":\"action\",\r\n        \"image\":\"kasldfñjalks.jpjg\"\r\n    },{\r\n        \"name\": \"12e2e\",\r\n        \"image\": \"aklsdfj.png\"\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePelicula",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODliYzY2ZDUtNTRkZi00YzAwLWI3NTEtYzJlZjcxNjQ1MGE5IiwiZW1haWwiOiJlemVxdWllbDI4Y3VyYUBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NjUwMzYsImV4cCI6MTY2NDY1MTQzNn0.He7GipSPuUvzK_eQ4fOAlvAxvm1YNXlWSz27JPGJts8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"calification\": 2,\r\n    \"image\":\"234234\",\r\n    \"name\":\"funciono\",\r\n    \"genre\":[\"sakdjf\",\"34234\",\"youtube\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/movie/ee31965d-5d10-4e12-8ec2-24fb9752b227",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movie",
+								"ee31965d-5d10-4e12-8ec2-24fb9752b227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePelicula",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTIyN2Y1NTYtMGEzMC00OTU1LTg3NmUtZjlhNDYyMTg4MDc5IiwiZW1haWwiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNjY0MzIyMzM0LCJleHAiOjE2NjQ0MDg3MzR9.T0Rq1Yn6_MhfWCmx4tXx6iObqzk4BIRIxFEuu9cNXQE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/movie/e69ea7b0-415b-4d80-aab4-33e5907f73ad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"movie",
+								"e69ea7b0-415b-4d80-aab4-33e5907f73ad"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getPersonajes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZWYxODkyNTctMTg4Yi00ZGNkLTk2ZDktYWFlYTZhMDA3YzIyIiwiZW1haWwiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNjY0NDY4NTIzLCJleHAiOjE2NjQ1NTQ5MjN9.DcwDJaMTMz0AvUrz7_xVZEiZsFVQO5MfpjTQM0FdohE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPeliculas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODliYzY2ZDUtNTRkZi00YzAwLWI3NTEtYzJlZjcxNjQ1MGE5IiwiZW1haWwiOiJlemVxdWllbDI4Y3VyYUBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NjUwMzYsImV4cCI6MTY2NDY1MTQzNn0.He7GipSPuUvzK_eQ4fOAlvAxvm1YNXlWSz27JPGJts8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

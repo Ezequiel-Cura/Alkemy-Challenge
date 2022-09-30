@@ -30,12 +30,12 @@ router.get("/:id",auth,async(req,res)=>{
                 }
             }
         })
-        // console.log(pelicula_generos.generos)
+        
         if(!pelicula) return res.status(404).send("Pelicula not found")
         
         pelicula_generos.dataValues.personajes = pelicula.dataValues.personajes
 
-        console.log(pelicula.dataValues)
+        
         res.status(200).send(pelicula_generos)
     } catch (error) {
         console.log(error)
@@ -58,14 +58,14 @@ router.post("/",auth,async(req,res)=>{
         if(peliFound) return res.status(400).send("Pelicula already exist")
 
         const arrayGenero = genres.map(m=> m.name)
-        console.log(arrayGenero)
+        
         const genresFound = await Genero.findAll({
             where:{name: arrayGenero}
         })    
-        console.log(genresFound)
+        
         const filteredGenres = genres.filter(({ name: id1 }) => !genresFound.some(({ name: id2 }) => id2 === id1));
         const createdGenres = await Genero.bulkCreate(filteredGenres)
-       console.log(filteredGenres)
+       
         const genresDB = await Genero.findAll({
             where:{name: arrayGenero}
         })    
@@ -97,13 +97,7 @@ router.put("/:id",auth,async(req,res)=>{
     try {
         const {id} = req.params
         if(!id) res.send("Pelicula id required")
-        // let key;
-        // let value;
-        // for(const property in req.body){
-        //     key = property
-        //     value = req.body[property]
-        // }
-        
+       
         const FoundPelicula = await Pelicula.findOne({
             where:{
                 id: id
@@ -118,14 +112,14 @@ router.put("/:id",auth,async(req,res)=>{
                 const arrayGenero = genresDB.map(m=> m.name)
                 
                 const filteredGenres = req.body[prop].filter(p => !arrayGenero.includes(p))
-                console.log(filteredGenres)
+                
                 const arrayGenres = filteredGenres.map(p => {
                     return {
                         name: p
                     }
                 })
                 const allGenres = await Genero.bulkCreate(arrayGenres)
-                console.log(allGenres)
+                
                 const genres = await Genero.findAll({
                     where:{name: req.body[prop]}
                 }) 
@@ -158,7 +152,7 @@ router.put("/:id",auth,async(req,res)=>{
 router.delete("/:id",auth,async(req,res)=>{
     try {
         const {id} = req.params
-        console.log(id)
+        
         if(!id)return res.status(400).send("Pelicula id required")
 
         const peliFound = await Pelicula.findOne({

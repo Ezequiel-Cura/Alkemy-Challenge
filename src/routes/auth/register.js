@@ -1,9 +1,8 @@
 const Router = require("express");
 const bcrypt = require("bcrypt")
-// const jwt = require("jsonwebtoken")
-//models
+
 const {User} = require("../../database.js");
-// console.log(User)
+
 
 const router = Router()
 
