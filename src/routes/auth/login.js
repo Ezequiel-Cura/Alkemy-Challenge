@@ -30,10 +30,6 @@ router.post("/", async(req, res) => {
     const passwordCompare = await bcrypt.compare(password,userFound.password)
     if(passwordCompare === false)res.status(400).send("incorrect password")
 
-
-
-    
-
     const token = jwt.sign(
       { user_id: userFound.id, email },
       process.env.SECRET,

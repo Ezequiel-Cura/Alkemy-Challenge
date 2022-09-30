@@ -43,7 +43,7 @@ const sendEmail = async (email)=>{
             from: process.env.EMAIL_USER,
             to:email,
             subject:"Welcome to the API ALKEMY",
-            text:"Welcome!!",
+            text:"I hope you have a fantastic day, and enjoy the api :)",
 
         })
 

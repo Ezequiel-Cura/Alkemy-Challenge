@@ -58,14 +58,14 @@ router.post("/",auth,async(req,res)=>{
         if(peliFound) return res.status(400).send("Pelicula already exist")
 
         const arrayGenero = genres.map(m=> m.name)
-
+        console.log(arrayGenero)
         const genresFound = await Genero.findAll({
             where:{name: arrayGenero}
         })    
-        
+        console.log(genresFound)
         const filteredGenres = genres.filter(({ name: id1 }) => !genresFound.some(({ name: id2 }) => id2 === id1));
         const createdGenres = await Genero.bulkCreate(filteredGenres)
-       
+       console.log(filteredGenres)
         const genresDB = await Genero.findAll({
             where:{name: arrayGenero}
         })    
@@ -75,7 +75,13 @@ router.post("/",auth,async(req,res)=>{
             image,
             calification
         },{
-            include:Genero
+            include:{
+                model: Genero,
+                attributes:["name","image"],
+                through:{
+                    attributes:[]
+                }
+            }
         })
 
         createdPelicula.addGeneros(genresDB)
@@ -91,26 +97,57 @@ router.put("/:id",auth,async(req,res)=>{
     try {
         const {id} = req.params
         if(!id) res.send("Pelicula id required")
-        let key;
-        let value;
-        for(const property in req.body){
-            key = property
-            value = req.body[property]
-        }
-        console.log(key+ " " + value)
+        // let key;
+        // let value;
+        // for(const property in req.body){
+        //     key = property
+        //     value = req.body[property]
+        // }
+        
         const FoundPelicula = await Pelicula.findOne({
             where:{
                 id: id
             }
         })
-        // INTENTA HACERLO CON VARIAS PROPIEDADES HACIENDO UN LOOP SOBRE ESTO
-        // ESTO DE ACA ABAJO
-        FoundPelicula[key] = value
+        
+        for(const prop in req.body){
+            if(prop === "genre"){
+                const genresDB = await Genero.findAll({
+                    where:{name: req.body[prop]}
+                })  
+                const arrayGenero = genresDB.map(m=> m.name)
+                
+                const filteredGenres = req.body[prop].filter(p => !arrayGenero.includes(p))
+                console.log(filteredGenres)
+                const arrayGenres = filteredGenres.map(p => {
+                    return {
+                        name: p
+                    }
+                })
+                const allGenres = await Genero.bulkCreate(arrayGenres)
+                console.log(allGenres)
+                const genres = await Genero.findAll({
+                    where:{name: req.body[prop]}
+                }) 
+
+                FoundPelicula.addGeneros(genres)
+            }else if(prop === "personajes"){
+                const allPersonajes = await Personaje.findAll({
+                    where:{
+                        name: req.body[prop]
+                    }
+                })
+                await FoundPelicula.addPersonajes(allPersonajes)
+            }else{
+                FoundPelicula[prop] = req.body[prop]
+            }
+        }
+
         await FoundPelicula.save()
         res.status(200).send("Updated succefully")
     } catch (err) {
         console.log(err)
-        res.status(400).send({msg: "Remember one property per requeste can be updated", error: err})
+        res.status(400).send({msg: "Remember the properties are title, image,calification,genres[name],personajes[name]", error: err})
     }
 
 
